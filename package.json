@@ -4,14 +4,14 @@
     "build": "next build",
     "dev": "next dev",
     "start": "next start",
-		"lint": "next lint",
+    "lint": "next lint",
     "fix-lint": "next lint --fix",
     "format": "prettier --write ./src",
     "postinstall": "husky install",
     "prepare": "husky && husky install",
     "husky": "husky install"
   },
-	"lint-staged": {
+  "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "prettier --cache --write .",
       "eslint --cache . --ext ts,tsx --fix --report-unused-disable-directives --max-warnings 0"

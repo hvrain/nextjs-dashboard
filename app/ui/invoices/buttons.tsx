@@ -14,6 +14,8 @@ export function CreateInvoice() {
 }
 
 export function UpdateInvoice({ id }: { id: string }) {
+  // eslint-disable-next-line no-console
+  console.log({ id });
   return (
     <Link
       href="/dashboard/invoices"
@@ -25,12 +27,13 @@ export function UpdateInvoice({ id }: { id: string }) {
 }
 
 export function DeleteInvoice({ id }: { id: string }) {
+  // eslint-disable-next-line no-console
+  console.log({ id });
+
   return (
-    <>
-      <button className="rounded-md border p-2 hover:bg-gray-100">
-        <span className="sr-only">Delete</span>
-        <TrashIcon className="w-5" />
-      </button>
-    </>
+    <button className="rounded-md border p-2 hover:bg-gray-100">
+      <span className="sr-only">Delete</span>
+      <TrashIcon className="w-5" />
+    </button>
   );
 }

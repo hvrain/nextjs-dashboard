@@ -1,7 +1,8 @@
-import { generateYAxis } from '@/app/lib/utils';
-import { CalendarIcon } from '@heroicons/react/24/outline';
-import { lusitana } from '@/app/ui/fonts';
+// import { CalendarIcon } from '@heroicons/react/24/outline';
+
 import { Revenue } from '@/app/lib/definitions';
+// import { generateYAxis } from '@/app/lib/utils';
+import { lusitana } from '@/app/ui/fonts';
 
 // This component is representational only.
 // For data visualization UI, check out:
@@ -14,7 +15,9 @@ export default async function RevenueChart({
 }: {
   revenue: Revenue[];
 }) {
-  const chartHeight = 350;
+  // eslint-disable-next-line no-console
+  console.log({ revenue });
+  // const chartHeight = 350;
   // NOTE: Uncomment this code in Chapter 7
 
   // const { yAxisLabels, topLabel } = generateYAxis(revenue);

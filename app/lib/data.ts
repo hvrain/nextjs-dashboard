@@ -1,4 +1,5 @@
 import { sql } from '@vercel/postgres';
+
 import {
   CustomerField,
   CustomersTableType,
@@ -23,6 +24,7 @@ export async function fetchRevenue() {
 
     return data.rows;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Database Error:', error);
     throw new Error('Failed to fetch revenue data.');
   }
@@ -37,12 +39,13 @@ export async function fetchLatestInvoices() {
       ORDER BY invoices.date DESC
       LIMIT 5`;
 
-    const latestInvoices = data.rows.map((invoice) => ({
+    const latestInvoices = data.rows.map(invoice => ({
       ...invoice,
       amount: formatCurrency(invoice.amount),
     }));
     return latestInvoices;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Database Error:', error);
     throw new Error('Failed to fetch the latest invoices.');
   }
@@ -78,6 +81,7 @@ export async function fetchCardData() {
       totalPendingInvoices,
     };
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Database Error:', error);
     throw new Error('Failed to fetch card data.');
   }
@@ -86,7 +90,7 @@ export async function fetchCardData() {
 const ITEMS_PER_PAGE = 6;
 export async function fetchFilteredInvoices(
   query: string,
-  currentPage: number,
+  currentPage: number
 ) {
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
@@ -114,6 +118,7 @@ export async function fetchFilteredInvoices(
 
     return invoices.rows;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Database Error:', error);
     throw new Error('Failed to fetch invoices.');
   }
@@ -135,6 +140,7 @@ export async function fetchInvoicesPages(query: string) {
     const totalPages = Math.ceil(Number(count.rows[0].count) / ITEMS_PER_PAGE);
     return totalPages;
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Database Error:', error);
     throw new Error('Failed to fetch total number of invoices.');
   }
@@ -152,14 +158,15 @@ export async function fetchInvoiceById(id: string) {
       WHERE invoices.id = ${id};
     `;
 
-    const invoice = data.rows.map((invoice) => ({
-      ...invoice,
+    const invoice = data.rows.map(inv => ({
+      ...inv,
       // Convert amount from cents to dollars
-      amount: invoice.amount / 100,
+      amount: inv.amount / 100,
     }));
 
     return invoice[0];
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Database Error:', error);
     throw new Error('Failed to fetch invoice.');
   }
@@ -178,6 +185,7 @@ export async function fetchCustomers() {
     const customers = data.rows;
     return customers;
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error('Database Error:', err);
     throw new Error('Failed to fetch all customers.');
   }
@@ -203,7 +211,7 @@ export async function fetchFilteredCustomers(query: string) {
 		ORDER BY customers.name ASC
 	  `;
 
-    const customers = data.rows.map((customer) => ({
+    const customers = data.rows.map(customer => ({
       ...customer,
       total_pending: formatCurrency(customer.total_pending),
       total_paid: formatCurrency(customer.total_paid),
@@ -211,6 +219,7 @@ export async function fetchFilteredCustomers(query: string) {
 
     return customers;
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
   }
