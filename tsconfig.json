@@ -29,7 +29,10 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/lib/placeholder-data.ts",
-    "scripts/seed.js"
+    "scripts/seed.js",
+    "tailwind.config.ts",
+    "postcss.config.js",
+    "next.config.mjs"
   ],
   "exclude": ["node_modules"]
 }

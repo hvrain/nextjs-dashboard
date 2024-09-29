@@ -1,0 +1,86 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2020": true },
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "ignorePatterns": [".next", "next.config.mjs"],
+  "parser": "@typescript-eslint/parser", 
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "react-refresh",
+    "import",
+    "prettier"
+  ],
+  "rules": {
+    "no-nested-ternary": "off",
+    "no-bitwise": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react*",
+            "group": "builtin"
+          },
+          {
+            "pattern": "@/*",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": ["react*"],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": ["function-declaration", "arrow-function"]
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "linebreak-style": ["error", "unix"],
+    "react/jsx-props-no-spreading": "off",
+    "jsx-a11y/label-has-associated-control": [
+      2, 
+      {
+        "labelAttributes": ["htmlFor"]
+      }
+    ],
+    "consistent-return": "off",
+    "react/require-default-props": "off",
+    "react-refresh/only-export-components": "off",
+    "max-len": "off",
+    "react/button-has-type": "off",
+		"import/prefer-default-export": "off"
+  }
+}
