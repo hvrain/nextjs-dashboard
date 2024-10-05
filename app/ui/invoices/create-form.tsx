@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useEffect, useState } from 'react';
+import { useActionState, useState } from 'react';
 
 import {
   CheckIcon,
@@ -14,35 +14,24 @@ import { createInvoice, State } from '@/app/lib/actions';
 import { CustomerField } from '@/app/lib/definitions';
 import { Button } from '@/app/ui/button';
 
-const initialState: State = { message: null, errors: {} };
-
-const sessionKey = ['customerId', 'amount', 'status'] as const;
-
 export default function Form({ customers }: { customers: CustomerField[] }) {
+  const initialState: State = { message: null, errors: {} };
   const [state, formAction, isPending] = useActionState(
     createInvoice,
     initialState
   );
+
   const [values, setValues] = useState({
     customerId: '',
     amount: '',
     status: '',
   });
 
-  useEffect(() => {
+  const handleAction = (formData: FormData) => {
     setValues(prev => ({
       ...prev,
-      ...Object.fromEntries(
-        sessionKey.map(key => [key, sessionStorage.getItem(key) ?? ''])
-      ),
+      ...Object.fromEntries(formData.entries()),
     }));
-  }, [state]);
-
-  const handleAction = (formData: FormData) => {
-    sessionKey.forEach(key => {
-      const value = formData.get(key) as string;
-      sessionStorage.setItem(key, value);
-    });
     formAction(formData);
   };
 
@@ -58,11 +47,14 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
             <select
               id="customer"
               name="customerId"
+              key={values.customerId ?? ''}
               defaultValue={values.customerId ?? ''}
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               aria-describedby="customer-error"
             >
-              <option value="">Select a customer</option>
+              <option value="" disabled>
+                Select a customer
+              </option>
               {customers.map(customer => (
                 <option key={customer.id} value={customer.id}>
                   {customer.name}
@@ -93,7 +85,6 @@ export default function Form({ customers }: { customers: CustomerField[] }) {
                 name="amount"
                 type="number"
                 step="0.01"
-                defaultValue={values.amount ?? ''}
                 placeholder="Enter USD amount"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
                 aria-describedby="amount-error"
