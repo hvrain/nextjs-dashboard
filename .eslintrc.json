@@ -2,11 +2,11 @@
   "root": true,
   "env": { "browser": true, "es2020": true },
   "extends": [
-    "next/core-web-vitals",
-    "airbnb",
+		"airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
     "eslint:recommended",
+    "next/core-web-vitals",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
@@ -81,6 +81,9 @@
     "react-refresh/only-export-components": "off",
     "max-len": "off",
     "react/button-has-type": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-use-before-define": "off",
+		"@typescript-eslint/naming-convention": "off"
   }
 }
