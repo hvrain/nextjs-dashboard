@@ -21,7 +21,7 @@ export default async function InvoicesTable({
           <div className="md:hidden">
             {invoices?.map(invoice => (
               <div
-                key={invoice.id}
+                key={`${invoice.id}invoice`}
                 className="mb-2 w-full rounded-md bg-white p-4"
               >
                 <div className="flex items-center justify-between border-b pb-4">
