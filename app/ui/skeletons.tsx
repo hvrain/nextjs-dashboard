@@ -84,7 +84,7 @@ export function LatestInvoicesSkeleton() {
 
 export default function DashboardSkeleton() {
   return (
-    <>
+    <div key="/dashboard/(overview)/loading">
       <div
         className={`${shimmer} relative mb-4 h-8 w-36 overflow-hidden rounded-md bg-gray-100`}
       />
@@ -98,7 +98,7 @@ export default function DashboardSkeleton() {
         <RevenueChartSkeleton />
         <LatestInvoicesSkeleton />
       </div>
-    </>
+    </div>
   );
 }
 
