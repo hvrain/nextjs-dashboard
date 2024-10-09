@@ -13,7 +13,7 @@
     "plugin:prettier/recommended",
     "prettier"
   ],
-  "ignorePatterns": [".next", "next.config.mjs"],
+  "ignorePatterns": [".next/*", "next.config.mjs"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -68,7 +68,7 @@
       }
     ],
     "react/react-in-jsx-scope": "off",
-		"global-require": "off",
+    "global-require": "off",
     "linebreak-style": ["error", "unix"],
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/label-has-associated-control": [
@@ -83,16 +83,20 @@
     "max-len": "off",
     "react/button-has-type": "off",
     "import/prefer-default-export": "off",
-    "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "off",
+    "no-use-before-define": ["error", {
+			"functions": false
+		}],
+    "@typescript-eslint/no-use-before-define": ["error", {
+			"functions": false
+		}],
     "@typescript-eslint/naming-convention": [
-			"error",
-			{ 
-				"selector": "variable",
-    		"format": ["camelCase", "PascalCase", "snake_case", "UPPER_CASE"]
-			} 
-		],
-		// 정의되지 않은 prop 사용 체크 ( 기본적으로 typescript에서 체크하므로 off )
+      "error",
+      {
+        "selector": "variable",
+        "format": ["camelCase", "PascalCase", "snake_case", "UPPER_CASE"]
+      }
+    ],
+    // 정의되지 않은 prop 사용 체크 ( 기본적으로 typescript에서 체크하므로 off )
     "react/prop-types": "off" // @see https://github.com/shadcn-ui/ui/issues/120
   }
 }
