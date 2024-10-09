@@ -3,6 +3,7 @@ import tailwindForm from '@tailwindcss/forms';
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -15,10 +16,15 @@ const config: Config = {
       },
       colors: {
         blue: {
-          400: '#2589FE',
-          500: '#0070F3',
-          600: '#2F6FEB',
+          '400': '#2589FE',
+          '500': '#0070F3',
+          '600': '#2F6FEB',
         },
+      },
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
     },
     keyframes: {
@@ -29,6 +35,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [tailwindForm],
+  plugins: [tailwindForm, require('tailwindcss-animate')],
 };
 export default config;

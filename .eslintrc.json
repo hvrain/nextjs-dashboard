@@ -68,6 +68,7 @@
       }
     ],
     "react/react-in-jsx-scope": "off",
+		"global-require": "off",
     "linebreak-style": ["error", "unix"],
     "react/jsx-props-no-spreading": "off",
     "jsx-a11y/label-has-associated-control": [
@@ -84,6 +85,14 @@
     "import/prefer-default-export": "off",
     "no-use-before-define": "off",
     "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/naming-convention": "off"
+    "@typescript-eslint/naming-convention": [
+			"error",
+			{ 
+				"selector": "variable",
+    		"format": ["camelCase", "PascalCase", "snake_case", "UPPER_CASE"]
+			} 
+		],
+		// 정의되지 않은 prop 사용 체크 ( 기본적으로 typescript에서 체크하므로 off )
+    "react/prop-types": "off" // @see https://github.com/shadcn-ui/ui/issues/120
   }
 }
